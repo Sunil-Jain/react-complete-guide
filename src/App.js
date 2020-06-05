@@ -20,11 +20,13 @@ class App extends Component {
           3) Ease of maintenace: As components are individual piece of logic we can modify one component 
               individually rather than thinking about all the other components.
         */}
-        <Person />
-        <Person />
-        <Person />
-        <Person />
-        <Person />
+        {/* 
+          We can give attributes to this custom HTML Elements and then use these properties in the actual component definition.
+        */}
+        <Person name="Vinodbhai" age="47"/>
+        <Person name="Sanjuben" age="43"/>
+        <Person name="Sunil" age="25"/>
+        <Person name="Kunal" age="21"/>
       </div>
     );
 
