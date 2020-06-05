@@ -13,6 +13,17 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Hi, I am a React App</h1>
+        {/* 
+          Reason of defining multiple components is 1) Reusability 2) Simplicity 3) Ease of management.
+          1) Reusability: We can reuse the same component as many times as we want.
+          2) Simplicity: It is really simple to define individual component and not go and change other components.
+          3) Ease of maintenace: As components are individual piece of logic we can modify one component 
+              individually rather than thinking about all the other components.
+        */}
+        <Person />
+        <Person />
+        <Person />
+        <Person />
         <Person />
       </div>
     );
