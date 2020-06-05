@@ -3,6 +3,20 @@ import './App.css';
 import Person from './Person/Person.js'
 
 class App extends Component {
+
+  /** state is a special variable in React in which you can define the JSON object that you want to access throughout the system.
+   * This is special because if you change value of any variable in state object, React will re-render the whole component.
+   * This is helpful when you are managing the state with React.
+   */
+  state = {
+    persons: [
+      { name:"Vinodbhai", age:25 },
+      { name:"Sanjuben", age:43 },
+      { name:"Sunil", age:25 },
+      { name:"Kunal", age:21 }
+    ]
+  }
+
   render() {
     // 1) Every JSX code should return exactly one top level HTML element. This is by design. 
     // You can add as many nested HTML elements you want however there has to be exactly one root element.
@@ -23,10 +37,10 @@ class App extends Component {
         {/* 
           We can give attributes to this custom HTML Elements and then use these properties in the actual component definition.
         */}
-        <Person name="Vinodbhai" age="47"/>
-        <Person name="Sanjuben" age="43"/>
-        <Person name="Sunil" age="25"/>
-        <Person name="Kunal" age="21"/>
+        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
+        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}/>
+        <Person name={this.state.persons[2].name} age={this.state.persons[2].age} >Hobbies: IT</Person>
+        <Person name={this.state.persons[3].name} age={this.state.persons[3].age}/>
       </div>
     );
 
