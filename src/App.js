@@ -17,6 +17,16 @@ class App extends Component {
     ]
   }
 
+  switchNameHandler = () => {
+    this.state.persons[0].name = 'Vinodbhai Mandot';
+    this.setState({persons: [
+      { name:"Vinodbhai Mandot", age:25 },
+      { name:"Sanjuben", age:43 },
+      { name:"Sunil", age:35 },
+      { name:"Kunal", age:21 }
+    ]})
+  }
+
   render() {
     // 1) Every JSX code should return exactly one top level HTML element. This is by design. 
     // You can add as many nested HTML elements you want however there has to be exactly one root element.
@@ -37,11 +47,13 @@ class App extends Component {
         {/* 
           We can give attributes to this custom HTML Elements and then use these properties in the actual component definition.
         */}
+        <button onClick={this.switchNameHandler}>Switch Names</button>
         <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
         <Person name={this.state.persons[1].name} age={this.state.persons[1].age}/>
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age} >Hobbies: IT</Person>
         <Person name={this.state.persons[3].name} age={this.state.persons[3].age}/>
       </div>
+      
     );
 
     // This representation is the exact same as above JSX representation.
