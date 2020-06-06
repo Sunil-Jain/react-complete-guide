@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './Person.css';
+
 const person = (props) => {
     {/* 
         All the attributes provided along with the custom element (IN this case Person)
@@ -12,9 +14,10 @@ const person = (props) => {
        We can access it pretty much the same way you would access any other attributes. 
     */}
     return (
-        <div>
+        <div className="Person">
             <p onClick={props.click}>I am {props.name} and I am {props.age} years old</p>
             <p>{props.children}</p>
+            <input onChange={props.change} value={props.name} />
         </div>
     );
 }

@@ -29,7 +29,26 @@ class App extends Component {
     ]})
   }
 
+  nameChangedHandler = (event) => {
+    // This won't work because we have to explicitly tell React that we are going to change the state of the state object.
+    // this.state.persons[0].name = 'Vinodbhai Mandot';
+    // To Do This we use something called setState method which is inherited from Component class from React Library.
+    this.setState({persons: [
+      { name:"Vinodbhai", age:47 },
+      { name:event.target.value, age:43 },
+      { name:"Sunil", age:35 },
+      { name:"Kunal", age:21 }
+    ]})
+  }
+
   render() {
+    const style = {
+      backgroundColor: 'white',
+      font: 'inherit',
+      border: '1px solid black',
+      padding: '8px'
+    }
+
     // 1) Every JSX code should return exactly one top level HTML element. This is by design. 
     // You can add as many nested HTML elements you want however there has to be exactly one root element.
     // 2) We cannot use reserved keywords like class in JSX code so JSX has defined alternative names for them.
@@ -49,10 +68,14 @@ class App extends Component {
         {/* 
           We can give attributes to this custom HTML Elements and then use these properties in the actual component definition.
         */}
-        <button onClick={this.switchNameHandler.bind(this, 'Vinodbhai Mandot')}>Switch Names</button>
+        <button 
+          style={style}
+          onClick={this.switchNameHandler.bind(this, 'Vinodbhai Mandot')}>Switch Names</button>
         <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age} 
-          click={() => this.switchNameHandler('Pappa')}/>
+        <Person name={this.state.persons[1].name} 
+          age={this.state.persons[1].age} 
+          click={() => this.switchNameHandler('Pappa')}
+          change={this.nameChangedHandler}/>
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age} >Hobbies: IT</Person>
         <Person name={this.state.persons[3].name} age={this.state.persons[3].age}/>
       </div>
