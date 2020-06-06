@@ -10,19 +10,19 @@ class App extends Component {
    */
   state = {
     persons: [
-      { name:"Vinodbhai", age:25 },
+      { name:"Vinodbhai", age:47 },
       { name:"Sanjuben", age:43 },
       { name:"Sunil", age:25 },
       { name:"Kunal", age:21 }
     ]
   }
 
-  switchNameHandler = () => {
+  switchNameHandler = (newName) => {
     // This won't work because we have to explicitly tell React that we are going to change the state of the state object.
     // this.state.persons[0].name = 'Vinodbhai Mandot';
     // To Do This we use something called setState method which is inherited from Component class from React Library.
     this.setState({persons: [
-      { name:"Vinodbhai Mandot", age:25 },
+      { name:newName, age:47 },
       { name:"Sanjuben", age:43 },
       { name:"Sunil", age:35 },
       { name:"Kunal", age:21 }
@@ -49,9 +49,10 @@ class App extends Component {
         {/* 
           We can give attributes to this custom HTML Elements and then use these properties in the actual component definition.
         */}
-        <button onClick={this.switchNameHandler}>Switch Names</button>
+        <button onClick={this.switchNameHandler.bind(this, 'Vinodbhai Mandot')}>Switch Names</button>
         <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age} click={this.switchNameHandler}/>
+        <Person name={this.state.persons[1].name} age={this.state.persons[1].age} 
+          click={() => this.switchNameHandler('Pappa')}/>
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age} >Hobbies: IT</Person>
         <Person name={this.state.persons[3].name} age={this.state.persons[3].age}/>
       </div>
