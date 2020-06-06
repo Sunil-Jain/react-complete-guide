@@ -14,8 +14,6 @@ const App = props => {
 
     const [otherState,someOtherState] = useState('Some other state');
 
-    
-
     const switchNameHandler = () => {
         setPersonsState({
             persons: [

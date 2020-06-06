@@ -18,7 +18,9 @@ class App extends Component {
   }
 
   switchNameHandler = () => {
-    this.state.persons[0].name = 'Vinodbhai Mandot';
+    // This won't work because we have to explicitly tell React that we are going to change the state of the state object.
+    // this.state.persons[0].name = 'Vinodbhai Mandot';
+    // To Do This we use something called setState method which is inherited from Component class from React Library.
     this.setState({persons: [
       { name:"Vinodbhai Mandot", age:25 },
       { name:"Sanjuben", age:43 },
@@ -49,7 +51,7 @@ class App extends Component {
         */}
         <button onClick={this.switchNameHandler}>Switch Names</button>
         <Person name={this.state.persons[0].name} age={this.state.persons[0].age}/>
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}/>
+        <Person name={this.state.persons[1].name} age={this.state.persons[1].age} click={this.switchNameHandler}/>
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age} >Hobbies: IT</Person>
         <Person name={this.state.persons[3].name} age={this.state.persons[3].age}/>
       </div>
