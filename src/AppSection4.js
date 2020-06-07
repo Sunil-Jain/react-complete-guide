@@ -22,11 +22,21 @@ class App extends Component {
   }
 
   deletePersonHandler = personIndex => {
-    const persons = this.state.persons;
+    // There was an issue with our existing implementation to delete any person from persons array.
+    // Javascript is referenced type scripting language. What this means is that when you assign a new variable 
+    // to an existing collection, you are just giving a new reference to the existing memory blocks where the object
+    // is stored. So when you perform manipulations on these new reference, you are actually updating the existing 
+    // object only. To solve this issue, always copy the existing collection into a new collection using one of 
+    // the following two ways.
+    
+    // slice method copies the existing collection into a new collection.
+    const persons = this.state.persons.slice();
+    // Other way to copy an array is with spread operator. Please remember that this is ES6 operator.
+    const persons2 = [...this.state.persons];
     // splice method for array type will remove the data at the index passed in as an argument.
-    persons.splice(personIndex, 1);
+    persons2.splice(personIndex, 1);
     this.setState({
-        persons: persons
+        persons: persons2
     });
   }
 
