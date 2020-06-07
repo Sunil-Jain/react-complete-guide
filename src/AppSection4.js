@@ -21,6 +21,15 @@ class App extends Component {
     });
   }
 
+  deletePersonHandler = personIndex => {
+    const persons = this.state.persons;
+    // splice method for array type will remove the data at the index passed in as an argument.
+    persons.splice(personIndex, 1);
+    this.setState({
+        persons: persons
+    });
+  }
+
   render() {
     const style = {
       backgroundColor: 'white',
@@ -31,12 +40,14 @@ class App extends Component {
 
     let persons = null;
 
-    if (this.state.showPersons) {
+    if ( this.state.showPersons ) {
         persons = (
             <div>
                 {
-                    this.state.persons.map(person => {
-                        return <Person name = {person.name} age={person.age}/>
+                    this.state.persons.map((person, index) => {
+                        return <Person name = {person.name} 
+                            age={person.age} 
+                            click={this.deletePersonHandler.bind(this, index)} />
                     })
                 }
             </div> 
