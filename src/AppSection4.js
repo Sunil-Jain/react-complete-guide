@@ -6,10 +6,10 @@ class App extends Component {
 
   state = {
     persons: [
-      { name:"Vinodbhai", age:47 },
-      { name:"Sanjuben", age:43 },
-      { name:"Sunil", age:25 },
-      { name:"Kunal", age:21 }
+      { id: '1', name:"Vinodbhai", age:47 },
+      { id: '2', name:"Sanjuben", age:43 },
+      { id: '3', name:"Sunil", age:25 },
+      { id: '4', name:"Kunal", age:21 }
     ],
     showPersons: false
   }
@@ -21,6 +21,28 @@ class App extends Component {
     });
   }
 
+  nameChangedHandler = (event, id) => {
+    const personIndex = this.state.persons
+        .findIndex(person => person.id === id)
+
+    const person = {
+        ...this.state.persons[personIndex]
+    };
+
+    // Alternate way to copy an object
+    // const person = Object.assign({}, this.state.persons[personIndex])
+
+    person.name = event.target.value;
+
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+
+    this.setState({
+        persons: persons
+    })
+  }
+
+
   deletePersonHandler = personIndex => {
     // There was an issue with our existing implementation to delete any person from persons array.
     // Javascript is referenced type scripting language. What this means is that when you assign a new variable 
@@ -28,7 +50,7 @@ class App extends Component {
     // is stored. So when you perform manipulations on these new reference, you are actually updating the existing 
     // object only. To solve this issue, always copy the existing collection into a new collection using one of 
     // the following two ways.
-    
+
     // slice method copies the existing collection into a new collection.
     const persons = this.state.persons.slice();
     // Other way to copy an array is with spread operator. Please remember that this is ES6 operator.
@@ -57,7 +79,9 @@ class App extends Component {
                     this.state.persons.map((person, index) => {
                         return <Person name = {person.name} 
                             age={person.age} 
-                            click={this.deletePersonHandler.bind(this, index)} />
+                            click={this.deletePersonHandler.bind(this, index)}
+                            key={person.id}
+                            change={(event) => this.nameChangedHandler(event, person.id)} />
                     })
                 }
             </div> 
