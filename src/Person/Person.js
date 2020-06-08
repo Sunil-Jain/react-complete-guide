@@ -1,20 +1,17 @@
 import React from 'react';
+import Radium from 'radium';
 
 import './Person.css';
 
 const person = (props) => {
-    {/* 
-        All the attributes provided along with the custom element (IN this case Person)
-        are stored as one JSON object. We can name it whatever we want. Standard way is to name it props.
-        Then you can get individual element from this props JSON object and get values.    
-    */}
-    {/*
-       We can access the data/content of any component using the special attribute 'children'.
-       This will give you access to any data/content that is passed to this custom HTML element/component at runtime.
-       We can access it pretty much the same way you would access any other attributes. 
-    */}
+    const style = {
+        '@media (min-width: 500px)': {
+            width: '450px'
+        }
+    };
+
     return (
-        <div className="Person">
+        <div className="Person" style={style}>
             <p onClick={props.click}>I am {props.name} and I am {props.age} years old</p>
             <p>{props.children}</p>
             <input onChange={props.change} value={props.name} />
@@ -22,4 +19,4 @@ const person = (props) => {
     );
 }
 
-export default person;
+export default Radium(person);
