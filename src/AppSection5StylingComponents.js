@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import classes from './App.css';
 import Person from './Person/Person.js';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary.js'
 
 class App extends Component {
 
@@ -41,7 +42,7 @@ class App extends Component {
 
   deletePersonHandler = personIndex => {
     // slice method copies the existing collection into a new collection.
-    const persons = this.state.persons.slice();
+    // const persons = this.state.persons.slice();
     // Other way to copy an array is with spread operator. Please remember that this is ES6 operator.
     const persons2 = [...this.state.persons];
     // splice method for array type will remove the data at the index passed in as an argument.
@@ -62,11 +63,12 @@ class App extends Component {
             <div>
                 {
                     this.state.persons.map((person, index) => {
-                        return <Person name = {person.name} 
+                        return <ErrorBoundary key={person.id}>
+                            <Person name = {person.name} 
                             age={person.age} 
                             click={this.deletePersonHandler.bind(this, index)}
-                            key={person.id}
                             change={(event) => this.nameChangedHandler(event, person.id)} />
+                            </ErrorBoundary>
                     })
                 }
             </div> 
