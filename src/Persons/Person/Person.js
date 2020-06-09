@@ -22,13 +22,6 @@ const person = (props) => {
             width: '450px'
         }
     };
-    
-    const random = Math.random();
-
-    if (random > 0.7) {
-        throw new Error('something went wrong');
-    }
-
     return (
 
         <div className={classes.Person}>
